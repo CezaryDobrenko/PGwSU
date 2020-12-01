@@ -37,14 +37,7 @@ public class GameManager : MonoBehaviour {
     {
         MainMenu.SetActive(true);
         GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<PlayerHealth>().enabled = false;
-        foreach (Transform child in player.transform)
-        {
-            if (child.tag != "MainCamera")
-                child.gameObject.SetActive(false);
-        }
-        Cursor.visible = true;
+        loadGameSettings(false);
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -52,36 +45,39 @@ public class GameManager : MonoBehaviour {
     {
         MainMenu.SetActive(false);
         GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        player.GetComponent<PlayerMovement>().enabled = true;
-        player.GetComponent<PlayerHealth>().enabled = true;
-        foreach (Transform child in player.transform)
-        {
-            if (child.tag != "MainCamera")
-                child.gameObject.SetActive(true);
-        }
-        Cursor.visible = false;
+        loadGameSettings(true);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void PlayerDeath()
     {
         deathScreen.SetActive(true);
-        GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<PlayerHealth>().enabled = false;
-        foreach (Transform child in player.transform)
-        {
-            if (child.tag != "MainCamera")
-                child.gameObject.SetActive(false);
-        }
-        Cursor.visible = true;
+        freezeGame();
         Cursor.lockState = CursorLockMode.None;
-        player.tag = "Untagged";
     }
 
     public void PlayerWon()
     {
         wonScreen.SetActive(true);
+        freezeGame();
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void loadGameSettings(bool value)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
+        player.GetComponent<PlayerMovement>().enabled = value;
+        player.GetComponent<PlayerHealth>().enabled = value;
+        foreach (Transform child in player.transform)
+        {
+            if (child.tag != "MainCamera")
+                child.gameObject.SetActive(value);
+        }
+        Cursor.visible = !value;
+    }
+
+    private void freezeGame()
+    {
         GameObject player = GameObject.FindGameObjectWithTag("Player").gameObject;
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<PlayerHealth>().enabled = false;
@@ -91,7 +87,7 @@ public class GameManager : MonoBehaviour {
                 child.gameObject.SetActive(false);
         }
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
         player.tag = "Untagged";
     }
+
 }
