@@ -13,6 +13,8 @@ https://www.youtube.com/watch?v=8J9-EXtiJ7g
 
 i wiele wiele wiele więcej
 
+Shadery pochodzą z:
+https://gist.github.com/benloong/b25066cb140398b402f2ad8295a28d42
 
 Assety pochodzą z:
 https://www.spriters-resource.com/pc_computer/doomdoomii/
