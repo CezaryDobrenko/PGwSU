@@ -21,3 +21,7 @@ https://www.google.com/search?q=doom+2d+assets&source=lnms&tbm=isch&sa=X&ved=2ah
 Dźwięki pochodzą z:
 https://freesound.org/
 https://www.youtube.com/watch?v=9bgFpss0YFE (przycinane w programie do edycji dźwięki)
+
+Skrypty/Porady odnośnie błędów (Infinity vector type):
+https://docs.unity3d.com/Manual/index.html
+https://stackoverflow.com/questions/tagged/unity3d
